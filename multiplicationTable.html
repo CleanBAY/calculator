@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=input, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #display{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: 70vh;
+        }
+    </style>
+</head>
+
+<body>
+     
+    <input type="number" name="" id="input1">
+    <input type="number" name="" id="input2">
+    <button onclick="handleClick()">click</button>
+    <div id="display"></div>
+
+    <script>
+        let firstInput = document.getElementById('input1')    
+        let secondInput = document.getElementById('input2')        
+        
+        function handleClick(){
+            for (let i =firstInput.value; i <=secondInput.value; i++){
+                for (let x = 1;  x <= 12;  x++) {
+                    display.innerHTML += `<p>${i} *${x} = ${i * x}</p>`
+                    console.log(x);
+                    
+                    
+                }
+                
+            }
+
+        }
+
+
+        // for(let i = 0; i < 10; i++){
+        //     if(i % 2 === 0){
+        //         continue
+        //     }
+
+        //     console.log(i);
+        // }
+
+
+
+        // for(let i = 0; i < 10; i++){
+        //     if (i === 7){
+
+        //     }
+        //     console.log(i);
+        // }
+
+    </script>
+    
+</body>  
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h1Tag">hello</h1>
+    <div class="div"></div>
+    <div class="show"></div>
+    <script>
+        
+
+        let tag = document.querySelector('#h1Tag')
+
+        let name = 'oslim'
+        let career = 'web dev'
+
+
+
+        // concatinate
+        // tag.innerHTML += ' Good Morning' + ' ' + name + ' ' + career
+        tag.innerHTML += ` Good Morning ${name} ${career}`
+
+
+        // console.log(tag.innerHTML);
+        // for(let i = 0; i <= 10; i++){
+            // console.log(i)
+        // }
+
+
+        let divTag = document.querySelector('.div')
+        divTag.innerHTML = `
+        <p>i am a p TAg</p>
+        <span>iam a span TAg</span>
+         `
+
+         let shoWTag = document.querySelector('.show')
+         for(let i = 0; i <= 10; i++){
+            shoWTag.innerHTML += `
+            <p> i am here repeating ${i} </p>
+             `
+         }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inpVal">
+    <button onclick="addTodo()">Add Todo</button>
+    <div id="display"></div>
+    <script>
+        let allTodo = []
+        function addTodo(){
+            let text = inpVal.value
+
+            let obj = {
+                title: text,
+                status: false
+            }
+
+            allTodo.push(obj)
+
+            showALLItemOnUI()
+        }
+
+        function showALLItemOnUI(){
+            display.innerHTML = ''
+            allTodo.forEach(element => {
+                display.innerHTML += `<h1>${element.title}</h1> <span>${element.status}</span>`
+                
+            });
+        }
+        showALLItemOnUI()
+
+
+
+        
+        function showALLItemOnUI (){
+            //clear all the display innerHTML
+
+            display.innerHTML = ''
+            //show all the content from the array inside the display
+
+            allTodo.forEach((title, status) =>{
+                display.innerHTML += `<div>
+                    <h1 onclick="deleteTodo(${status})">${title}</h1>
+                    <button onclick="editTodo(${title})">Edit</button>
+                    </div`
+    
+            })
+        }
+
+
+
+        function deleteTodo(index){
+            // todolist.splice(index, 1)
+            // displayTodo()
+
+            const newtext = obj.filter(function(status, title){
+                return i !=index
+            })
+            obj= newtext
+            showALLItemOnUI()
+
+        }
+
+        function editTodo(index){
+            // console.log(index);
+            const res = obj.find(function(elem, i){
+                return i === index
+            })
+
+            //console.log(res);
+            let newVal = prompt(res, '')
+            //console.log(newVal);
+            if (newVal) {
+                obj.splice(index, 1, newVal)
+            }
+
+            showALLItemOnUI()
+        }
+    </script>
+    
+</body>
+</html>

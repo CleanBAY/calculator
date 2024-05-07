@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+    <script>
+        let numbers = [22,33,43,22,45,65,34,54,23,55]
+
+        let inc = numbers.includes(33)
+        console.log(inc);
+
+        //add element at the end of an array
+        numbers.push(77);
+        console.log(numbers);
+
+        //remove an element at the end of an array
+        numbers.pop()
+        console.log(numbers);
+
+        //unshift it add element at the start of an array
+        numbers.unshift('hello')
+        console.log(numbers);
+
+
+        let arr1 = [1,2,3,4]
+        let arr2 =[5,6,7,8]
+
+        let joined = arr1.concat(arr2)
+        console.log(joined, 'joined');
+
+        //join it join al element inside array and turn them to string 
+        let joinArr = numbers.join(', ')
+        console.log(joinArr);
+
+        let sliced = numbers.slice(0,2)
+        console.log(sliced);
+
+
+        let userNames = ['oslim', 'teslim', 'ben', 'selim']
+        let display = document.getElementById('display')
+        userNames.forEach((elem, i) =>{
+            display.innerHTML += `<p>${elem}</p>
+                                  <span>${i}</span>`
+        })
+
+
+
+        let prices = [40,100,300,22,50]
+
+
+        prices.forEach((elem)=>{
+            console.log(elem);
+        })
+
+
+        let filtered = prices.filter((elem)=>{
+            return elem > 50
+        })
+
+        console.log(filtered);
+
+        let decend = prices.sort((a,b)=>{
+            return a > b ? 1 : -1
+        })
+        console.log(decend);
+    </script>
+    
+</body>
+</html>

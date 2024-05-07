@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class User {
+            constructor(name,age,email){
+                this.name = name;
+                this.age = age;
+                this.email = email
+            }
+            displayName(){
+                console.log(this.name);
+            }
+        }
+
+        let userTwo = new User('Ben', 10, 'ben@gmail.com')
+        let userThree = new User('sam', 13, 'sam@gmail.com')
+        console.log(userTwo)
+        console.log(userThree)
+
+
+        let date = new Date()
+        console.log(date);
+
+        userTwo.displayName()
+        userThree.displayName()
+        class Car {
+            constructor(name, year){
+                this.name = name
+                this.year = year
+            }
+
+            displayYear(){
+                console.log(this.year);
+            }
+            start(){
+                console.log(this.name, 'has started');
+            }
+
+        }
+
+
+        const myCar = new Car('ford', 2020)
+        const myCar1 = new Car('Audi', 2020)
+        console.log(myCar);
+
+
+        myCar.displayYear()
+
+
+        myCar.start()
+        myCar1.start()
+
+
+
+
+        
+
+
+    </script>
+    
+</body>
+</html>

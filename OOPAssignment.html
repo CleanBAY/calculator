@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="title">
+    <input type="text" name="" id="desc">
+    <button onclick="handleClick()">Add</button>
+
+
+    <div id="display"></div>
+    
+</body>
+<script>
+
+
+        let todos =[];
+        class Todo{
+            constructor(title, desc){
+                this.title = title
+                this.desc = desc
+            }         
+
+            static AddTodo(obj){
+                todos.push(obj)
+            }
+
+
+            static displayAll(){   
+        display.innerHTML = "";
+        todos.forEach((ele, index) => {
+          display.innerHTML += `</div
+        <p>title : ${ele.title}</p>
+        <p>desc : ${ele.desc}</p>
+        <button onclick="deleteTodo(${index})">Delete</button></div>
+          </div>`;
+        
+        });
+        
+            
+        } 
+
+            static deleteTodo(){
+        todos.splice(index, 1);
+        displayAll();
+      }
+    
+        }
+
+
+    function handleClick(){       
+        if(title.value == ''|| desc.value == '' ){
+        alert('fill all input')
+        return
+    }
+        let newTodo = new Todo(title.value, desc.value)
+
+        Todo.AddTodo(newTodo)
+        console.log(todos); 
+
+
+    
+       Todo.displayAll();       
+    }
+
+    function deleteTodo() {
+
+        let cancel =delete todo (title.value, desc.value)
+
+        Todo.deleteTodo(cancel)
+       displayAll();
+      }
+    function displayAll(obj) {
+        
+
+      
+
+     }
+</script>
+</html>

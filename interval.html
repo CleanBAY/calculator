@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        border: thin solid black;
+        width: 15%;
+        height: 80vh;
+        display: flex;
+        gap: 1em;
+        flex-direction: column;
+        border-radius:10em ;
+        background-color: black;
+        
+    }
+
+    .circle1{
+        border: thin solid black;
+        width: 100px;
+        height: 15vh;
+        border-radius: 10em;
+        /* background-color: red; */
+        /* border: none; */
+        margin: auto;
+    }
+
+
+    .circle2{
+        border: thin solid black;
+        width: 50%;
+        height: 15vh;
+        border-radius: 10em;
+        /* background-color:green; */
+        /* border: none; */
+        margin: auto;
+    }    
+
+
+    .circle3{
+        border: thin solid black;
+        width: 50%;
+        height: 15vh;
+        border-radius: 10em;
+        /* background-color:yellow; */
+        /* border: none; */
+        margin: auto;
+
+    }     
+            
+
+
+</style>
+<body>
+    <div class="box">
+        <div class="circle1" id="red"></div>
+        <div class="circle3" id="yellow"></div>
+        <div class="circle2" id="green"></div>
+        
+
+    </div>
+    <div id="h1Tag"></div>
+
+
+    <script>
+
+        let number = 30
+
+
+        function timer(){
+            number --
+            h1Tag.innerHTML = number
+            if(number > 20){
+                green.style.backgroundColor = ''
+                red.style.backgroundColor = 'red'
+            }
+            if (number < 20 && number > 10){
+                red.style.backgroundColor = ''
+                yellow.style.backgroundColor = 'yellow'
+            }
+
+            if(number < 10){
+                yellow.style.backgroundColor = ''
+                green.style.backgroundColor = 'green'
+            }
+            if (number === 1){
+                number = 30
+            }
+        }
+
+
+        setInterval(()=>{
+            timer()
+        },1000);
+        
+
+        function calculate(){
+            let result = 4 * 5
+            return result
+        }
+
+        let res = calculate()
+            console.log(res);
+
+
+            let user = 'boy'
+
+            function checkSomething(){
+                if (user === 'guy'){
+                    return 'user is a boy'
+                }else if ( user)
+            }
+        
+    </script>
+    
+</body>
+</html>

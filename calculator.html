@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<style>
+    .mother{
+        border: thin solid black;
+        width: 38em;
+        margin: auto;
+        background-color: rgb(248, 248, 248);
+    }
+    .first{
+        /* border: thin solid black; */
+        height: 3vh;
+        width: 35em;
+        margin: auto;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+   
+    .second{ 
+        /* border: thin solid black; */
+        height: 5vh;
+        width: 35em;
+        margin: auto;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      
+    }
+    .up{
+        /* border: thin solid black; */
+        display: flex;
+        align-items: center; 
+        gap: 10px;
+        border-bottom: none;
+    }
+    .up1{
+        display: flex;
+        align-items: center; 
+        gap: 18px;
+
+    }
+    #boxUp{
+        width: 45em;
+        text-align: end;
+        height: 3vh;
+        border: none;
+        background-color: rgb(248, 248, 248);
+        
+    }
+    #box{
+        width: 8.6em;
+        text-align: end;
+        height: 10vh;
+        background-color: rgb(248, 248, 248);
+        border: none;
+        font-size: 70px;
+    }
+    .firstt button{
+        padding: 10px 40px;
+        border: none;
+        background-color: rgb(248, 248, 248);
+    }
+    .firstt button:hover{
+        background-color: #bdbdbe;
+    }
+    .secondd button{
+        width: 143px;
+        margin: 5px 3px;
+        font-size: 1.1em;
+        height: 9vh;
+    }
+    .third button{
+        width: 143px;
+        margin: 5px 3px;
+        font-size: 1.1em;
+        height: 9vh;
+    }
+    .fourth button{
+        width: 143px;
+        margin: 5px 3px;
+        font-size: 1.1em;
+        height: 9vh;
+        /* background-color: white; */
+        /* border: none; */
+
+    }
+    .fifth button{
+        width: 143px;
+        margin: 5px 3px;
+        font-size: 1.1em;
+        height: 9vh;
+    }
+    .sixth button{
+        width: 143px;
+        margin: 5px 3px;
+        font-size: 1.1em;
+        height: 9vh;
+    }
+    .seventh button{
+        width: 143px;
+        margin: 5px 3px;
+        font-size: 1.1em;
+        height: 9vh;
+    }
+</style>
+
+<body>
+    
+
+    <div class="mother">
+        <div class="first">
+            <div class="up1">
+                <i class="fa-solid fa-calculator" style="color: #005af5;"></i>
+            <p>Calculator</p>
+            </div>
+
+            <div class="up2">
+                <div style="display: flex; gap: 20px;">
+                    <i class="fa-regular fa-window-minimize"></i>
+                    <i class="fa-regular fa-window-maximize"></i>
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+        </div>
+
+        <div  class="second">
+
+            <div class="up">
+            <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#010409}</style><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+             </div>
+
+            <div><p style="font-size: 1.3em; font-weight: 600;">Standard</p></div>
+         </div>
+
+
+            <div>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+
+        </div>
+
+        <div class="inputt">
+        <div>
+            <input id="boxUp"  type="text">
+        </div>
+        <div>
+            <input id="box" type="text" placeholder="0">
+        </div>
+    </div>
+
+    <div class="firstt">
+        <button>MC</button>
+        <button>MR</button>
+        <button>M+</button>
+        <button>M-</button>
+        <button>MS</button>
+        <button>M</button>
+    </div>
+
+    <div class="secondd">
+        <button>%</button>
+        <button onclick="number(CE)">CE</button>
+        <button onclick="clearAll('C')">C</button>
+        <button onclick="removeOne()"><i class="fa-solid fa-delete-left"></i></button>
+    </div>
+
+    <div class="third">
+        <button>1/x</button>
+        <button>X&#8308;</button>
+        <button>&#8730;2</button>
+        <button onclick="symbol('&#247;')">&#247;</button>
+    </div>
+
+    <div class="fourth">
+        <button onclick="number(7)">7</button>
+        <button onclick="number(8)">8</button>
+        <button onclick="number(9)">9</button>
+        <button onclick="symbol('&#215;')">&#215;</button>
+    </div>
+
+    <div class="fifth">
+        <button onclick="number(4)">4</button>
+        <button onclick="number(5)">5</button>
+        <button onclick="number(6)">6</button>
+        <button onclick="number('&#8722;')">&#8722;</button>
+    </div>
+
+    <div class="sixth">
+        <button onclick="number(1)">1</button>
+        <button onclick="number(2)">2</button>
+        <button onclick="number(3)">3</button>
+        <button onclick="symbol('&#43;')">&#43;</button>
+    </div>
+
+    <div class="seventh">
+        <button>x/-</button>
+        <button onclick="number(0)">0</button>
+        <button>.</button>
+        <button style="background-color: blue; border: blue; color: white;" onclick="calculate('&#61;')">&#61;</button>
+    </div>
+
+    </div>
+
+
+
+<script>
+    let firstScreen = document.getElementById('box')
+    let secondScreen = document.getElementById('boxUp')
+    let firstVal, operators, secondVal = ''
+    let clears = false
+    
+   
+    function number(message) {
+
+        if (clears){
+            firstScreen.value=''
+            clears=false
+        }
+
+        if (secondScreen.value){
+
+        }
+        firstScreen.value+=message
+        
+       }
+
+       function clearAll(C){
+           document.getElementById('box').value = '';
+           document.getElementById('boxUp').value = '';
+       }
+       clearAll()
+
+       function removeOne(){
+           let currentValue = box.value;
+           document.getElementById('box').value = currentValue.slice(0,-1);
+
+           let secondValue = boxUp.value;
+           document.getElementById('boxUp').value = currentValue.slice(0,-1);
+
+       }
+
+       function symbol(message){
+           firstVal = firstScreen.value
+           operators= message
+           secondScreen.value = firstScreen.value + message
+
+           clears=true
+
+       }
+
+
+       function calculate(){
+       
+        if (operators == '+'){
+            firstScreen.value = Number(firstVal)+ Number (firstScreen.value)
+        }
+       }
+
+       
+       
+
+
+    
+       
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

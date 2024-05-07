@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    
+    // let word = "book";
+    // let result = word.split('').some((character, i)=> character === word[i=1]);
+    // console.log(result);
+
+
+
+    function somtin(param){
+        let data=param.split('')
+        let seen=false
+        data.forEach(element =>{
+            let first=param.indexOf(element)
+            let last=param.lastIndexOf(element)
+            if (last-first==1){
+                seen=true
+            }
+        });
+        return seen
+    }
+
+
+    console.log(somtin('book'))
+</script>
+</html>

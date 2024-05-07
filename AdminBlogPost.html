@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+textarea{
+    width: 100%;
+}
+</style>
+<body>
+
+<h3>Using CSS to style an HTML Form</h3>
+
+<div>
+  <form name="formDataa">
+    <label for="fname">Blog Title</label>
+    <input type="text" id="fname" name="title" placeholder="Blog Title">  <br> 
+    <label for="">Blog Description:</label> <br> <br>
+    <legend>
+        <textarea name="description" id="" cols="30" rows="10"></textarea>
+    </legend> 
+
+    <label for="country">Author:</label>
+    <select id="country" name="author">
+      <option value="Favour Simon">Favour Simon</option>
+      <option value="Peter Osuolale">Peter Osuolale</option>
+      <option value="John Omotosho">John Omotosho</option>
+      <option value="Friday Bolu">Friday Bolu</option>
+    </select> <br> <br>
+  <label for="">Upload Image:</label> <br> <br>
+  <input type="file" name="image">
+    <input type="submit" value="Submit" >
+  </form>
+</div>
+
+</body>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";    import { getFirestore, collection, getDocs, addDoc, getDoc, doc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
+         import { getStorage, ref, uploadBytes, getDownloadURL  } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js'
+    
+        const firebaseConfig = {
+          apiKey: "AIzaSyDDS21-ZhzuZNaaT1v0nkBUXvHp69ZcquM",
+          authDomain: "fir-learning-c085c.firebaseapp.com",
+          projectId: "fir-learning-c085c",
+          storageBucket: "fir-learning-c085c.appspot.com",
+          messagingSenderId: "727081276067",
+          appId: "1:727081276067:web:d07fd698fd04ef38fee516"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+        const colRef = collection(db, 'blogs')
+
+
+
+
+       async function form(e) {
+            e.preventDefault();
+            const title = formDataa.title.value;
+            const description =formDataa.description.value;
+            const author = formDataa.author.value;
+            const file = formDataa.image.files[0];
+            const random = Math.floor(Math.random() * 43) 
+             
+            try {
+                const storageRef = ref(storage, 'images/' + (file.name + random))
+                const imgRes = await uploadBytes(storageRef, file)
+                console.log(imgRes);
+                const downlodURL = await getDownloadURL(storageRef)
+                console.log(downlodURL);
+                // save data to firestore
+                const saveBLogRes = await addDoc(colRef, {title, description, author, image: downlodURL})
+              //  alert('blog uploded successfully')
+              window.location.href = './BlogApplication.html'
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+        formDataa.addEventListener('submit', form)
+    </script>
+</html>
+
+

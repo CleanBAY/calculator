@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+   // Data Destructuring
+   let user = {
+    name: 'Ben',
+    age:10,
+    email:'ben@gmail.com'
+   }
+
+   //let name = user.name //user['name']
+   //let email = user['email'] //user.email
+   //console.log(name, email);
+
+
+   const{name,email,age} = user
+   console.log(name, email, age);
+
+
+   let number =[1,2,3,4,5]
+
+   //let a = number[2]
+
+   const[a,b,c,d,e]= number
+   console.log(a,b,c,d,e);
+
+   //spread Operator
+   let odd = [3,5,7,9]
+   let even =[2,4,6,8]
+   let numbers = [...odd,]   //odd.contact(even)
+
+
+   console.log(numbers);
+   let str = 'benjamin john'
+
+
+   let newarr = [...str] //str...split('')
+   console.log(newarr);z
+
+</script>
+</html>

@@ -1,0 +1,139 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+  </head>
+  <body>
+    <div>
+      <p id="greeting"></p>
+    </div>
+    <div>
+      <h2>Sign In</h2>
+      <form id="signInForm">
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" placeholder="Enter your email" name="email" />
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input
+            type="text"
+            placeholder="Enter your password"
+            name="password"
+          />
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+      <button id="signOutBTN">SIgn out</button>
+
+
+      <div>
+        <h2>SIgn Up</h2>
+        <form id="signUpForm">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" placeholder="Enter your name" name="username">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" placeholder="Enter your email" name="email">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="text" placeholder="Enter your password" name="password">
+            </div>
+            <p id="errorP" style="color: red;"></p>
+            <button type="submit">SIgn Up</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+ 
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    //initialize auth
+    const auth = getAuth(app);
+
+    signInForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const email = signInForm.email.value;
+      const password = signInForm.password.value;
+
+      try {
+        const signIntask = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        // console.log(signIntask);
+        console.log("user has signed in");
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
+    signOutBTN.addEventListener("click", async () => {
+      try {
+        const signOutTask = await signOut(auth);
+        // console.log(signOutTask);
+        console.log("user has been signed out");
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
+    onAuthStateChanged(auth, (user)=>{
+        if (user) {
+        console.log(user); 
+        greeting.innerText = `Hello, ${user.email}`;
+        }
+        else{
+            console.log('No one is signed in');
+        greeting.innerText = `Hello, Guest`;
+
+        }
+    })
+
+    signUpForm.addEventListener('submit', async(event)=>{
+        event.preventDefault()
+        const name = signUpForm.username.value
+        const email = signUpForm.email.value
+        const password = signUpForm.password.value
+
+        try {
+        const createUserTask = await createUserWithEmailAndPassword(auth, email, password)
+        console.log(createUserTask);
+        } catch (error) {
+            console.log(error.message);
+            if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+                errorP.innerText = '*Password should be at least 6 characters'
+                
+            }
+            if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+                errorP.innerText = '*Email already exists'
+                
+            }
+          console.log(error);  
+        }
+    })
+
+
+  </script>
+</html>

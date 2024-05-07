@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    body{
+        background-color: aqua;
+    }
+
+    .container{
+        text-align: center;
+    }
+    .container h1{
+        font-size: 50px;
+        color: aqua;
+    }
+    #bton span{
+        color: red;
+    }
+
+
+
+</style>
+<body>
+
+<div class="container">
+
+    <h1>welcome to the Light House</h1>
+    <img id="light" alt="bulb">
+</div>
+<button id="bton" onclick="switchOff()"> <span>OFF</span>ON</button>
+
+
+
+
+<script>
+    let bulbon = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-aIXUaHbSgSs6gubsonAcqwZUNDoWXz1XWQ&usqp=CAU'
+    let bulboff  = 'https://i.postimg.cc/DfQfzgkz/360-F-557752883-Yy-M4kmp9-VLx-Eyjfhy-RGgq-Gkb1-OLQLw-PU-removebg-preview.png'
+
+
+    let bulb = document.getElementById('light')
+    bulb.src = bulboff
+
+    function switchOff(){
+        if(bulb.src === bulboff){
+            bulb.src = bulbon
+        }
+        else if(bulb.src === bulbon){
+            bulb.src = bulboff
+        }
+    }
+</script>
+    
+</body>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Firebase</h1>
+    
+</body>
+<script>
+
+
+</script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    import { get } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCFTTtUQh92vo97kscp8k8VRUnmymdZb5k",
+      authDomain: "cleanbay-e7e4e.firebaseapp.com",
+      projectId: "cleanbay-e7e4e",
+      storageBucket: "cleanbay-e7e4e.appspot.com",
+      messagingSenderId: "254937873244",
+      appId: "1:254937873244:web:71185365c73f07b16b9f99"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    formData.addEventListener('submit',async (event)=>{
+        event.preventDefault()
+        const title = formData.title.value
+        const author = formData.author.value
+        const description = formData.description.value
+
+        let date = new Date()
+
+
+        console.log(title, author, description);
+        try {
+            const addBlogTask = await addDoc(colRef, {title, author, description})
+            console.log(addBlogTask);
+            console.log('Blog added successfully');
+            getAllBlogs()
+        } catch (error){
+            console.log(error);
+        }
+       
+    })
+    async function getAllBlogs(){
+        try {
+            const getBlogsTask = await getDocs(colRef)
+
+            allBlogs.innerHTML = ''
+            getBlogsTask.forEach(blog => {
+                //console.log(blog);
+                const id = blog.id
+                const actualData = blog.data()
+                //console.log(actualData);
+                allBlogs.innertHTML += `
+                <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="${actualData.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${actualData.title}</h5>
+                    <p class="card-title">${actualData.description.slice(0,100)}...</p>
+                    <button id=${id}>Read more..</button>
+                    </div>
+                    </div>
+                `
+            })
+        }
+    }
+
+    window.onload
+</script>
+</html>

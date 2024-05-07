@@ -1,0 +1,256 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+    }
+    .quiz-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.4);
+        padding: 20px;
+        width: 600px;
+        overflow: hidden;
+        margin: auto;
+    }
+    .header {
+        padding: 3rem;
+    }
+    h2 {
+        padding: 1rem;
+        text-align: center;
+        margin: 0;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    ul li {
+        font-size: 20px;
+        margin: 1rem 0;
+    }
+    ul li label {
+        cursor: pointer;
+    }
+    button {
+        background-color: #8e44ad;
+        color: #fff;
+        border: none;
+        display: block;
+        width: 48%; /* Adjusted width for buttons */
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 1.3rem;
+        margin: 0.5%; /* Added margin for buttons */
+    }
+    button:hover {
+        background-color: #732d99;
+    }
+</style>
+<body>
+   
+    <div class="quiz-container" id="quiz">
+        <div class="header">
+            <h2 id="Questions">Questions</h2>
+            <ul>
+                <li>
+                    <input type="radio" name="answer" id="a" class="answer">
+                    <label for="a" id="aText"></label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="b" class="answer">
+                    <label for="b" id="bText"></label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="c" class="answer">
+                    <label for="c" id="cText"></label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="d" class="answer">
+                    <label for="d" id="dText"></label>
+                </li>
+            </ul>
+        </div>
+        <div style="display: flex;">
+            <button id="previous" onclick="changeQuestion(-1)">Previous</button>
+            <button id="submit" onclick="checkAnswer()">Submit</button>
+            <button id="next" onclick="changeQuestion(1)">Next</button>
+        </div>
+    </div>
+    <script>
+       const quizList  =[
+            {   id: 1,
+                question: "What is the chemical symbol for gold?",
+                A: "Au", 
+                B: "Ag",
+                C: "Al", 
+                D: "Ga",
+                correctAnswer: "a"
+            },
+            {   id: 2,
+                question: "What is the chemical symbol for silver?",
+                A: "Ag", 
+                B: "Au",
+                C: "Al",
+                D: "Ga",
+                correctAnswer: "b"
+            },
+            {   id: 3,
+                question: "Which river is the longest in the world?",
+                A: "Danube", 
+                B: "Yangtze",
+                C: "River Cape",
+                D: "River Nile",
+                correctAnswer: "d"
+            },
+            {   id:4,
+                question: "In which year did Christopher Columbus first reach the Americas?",
+                A: "1492", 
+                B: "1800",
+                C: "1850",
+                D: "1900",
+                correctAnswer: "a"
+            },
+            {   id:5,
+                question: 'Who wrote the play "Romeo and Juliet"?',
+                A: 'William Shakespeare',
+                B: "Charles Dickens",
+                C: "Jane Austen",
+                D: "J.K. Rowling",
+                correctAnswer:'a'
+            },
+            {
+                id:6,
+                question: 'In which sport is the term "slam dunk" commonly used?',
+                A: "Soccer",
+                B: "Tennis",
+                C: "Basketball",
+                D: "Volleyball",
+                correctAnswer: "c"
+            },
+            {
+                id:7,
+                question: "What does CPU stand for in the context of computers?",
+                A: "Central Processing Unit",
+                B: " Computer Processing Unit",
+                C: "Central Processor Unit",
+                D: "Central Program Unit",
+                correctAnswer: "a"
+            },
+            {
+                id:8,
+                question:  'Who is known as the "King of Pop"?',
+                A: "Elvis Presley",
+                B: "Beyoncé",
+                C: "Michael Jackson",
+                D: "Madonna",
+                correctAnswer: "c",
+            },
+            {
+                id:9,
+                question:  'What is the value of π (pi) to two decimal places?',
+                A: "3.16",
+                B: "3.18",
+                C: "3.20",
+                D: "3.14",
+                correctAnswer: "d"
+            },
+           
+            {
+                id:10,
+                question:  'What is the capital city of Australia?',
+                A: "Sydney",
+                B: "Melbourne",
+                C: "Canberra",
+                D: "Perth",
+                correctAnswer: "c"
+            },
+            
+        ];
+
+        
+
+        const quiz = document.getElementById('quiz');
+        const questions = document.getElementById('Questions');
+        const answers = document.querySelectorAll('.answer');
+        const a_text = document.getElementById('aText');
+        const b_text = document.getElementById('bText');
+        const c_text = document.getElementById('cText');
+        const d_text = document.getElementById('dText');
+        const submitBtn = document.getElementById('submit');
+        const nextBtn = document.getElementById('next');
+        const prevBtn = document.getElementById('previous');
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuiz() {
+            unPickAnswer();
+            const currentQuizData = quizList[currentQuestion];
+            questions.innerHTML = currentQuizData.question;
+            a_text.innerHTML = currentQuizData.A;
+            b_text.innerHTML = currentQuizData.B;
+            c_text.innerHTML = currentQuizData.C;
+            d_text.innerHTML = currentQuizData.D;
+        }
+        loadQuiz();
+
+        function unPickAnswer() {
+            answers.forEach(answerEl => answerEl.checked = false);
+        }
+
+        function selected() {
+            let answer;
+            answers.forEach(answerEl => {
+                if (answerEl.checked) {
+                    answer = answerEl.id;
+                }
+            });
+            return answer;
+        }
+
+        function checkAnswer() {
+            const answer = selected();
+            if (answer) {
+                if (answer === quizList[currentQuestion].correctAnswer) {
+                    score++; 
+                }
+
+                if (currentQuestion === quizList.length - 1) {
+                   
+                    quiz.innerHTML = `
+                        <h2>You scored ${score}/${quizList.length} questions</h2>
+                        <button onclick="location.reload()">Restart</button>
+                    `;
+                } else {
+                    currentQuestion++;
+                    loadQuiz();
+                }
+            }
+        }
+
+        function changeQuestion(direction) {
+            const newQuestion = currentQuestion + direction;
+            if (newQuestion >= 0 && newQuestion < quizList.length) {
+                currentQuestion = newQuestion;
+                loadQuiz();
+            }
+        }
+    </script>
+</body>
+</html>
+
+</body>
+</html>

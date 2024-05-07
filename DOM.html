@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1 id="h1TagText">Hello class</h1>
+    <button onclick="handleClick()">Add style</button>
+
+
+   
+
+
+    <script>
+        // DOM
+        // document object model
+
+    let tag = document.getElementById('h1TagText')
+    
+
+
+    tag.innerHTML += 200
+    
+
+    function handleClick(){
+        tag.innerHTML = 3000
+        tag.style.color = 'orange'
+        tag.style.backgroundColor = 'purple'
+    }
+    
+    
+
+        
+    </script>
+    
+</body>
+</html>

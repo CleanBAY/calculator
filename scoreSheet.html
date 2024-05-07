@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0;
+
+    }
+
+    .view{
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      /* gap: 50em; */
+    }
+
+    .butn{
+      gap: 5px;
+    }
+
+    .highlight{
+      background-color: 'red'!important;
+    }
+
+    #display{
+      color: white;
+    }
+
+</style>
+<body>
+
+   
+    
+    <input type="text" id="userName" placeholder="Username" style="padding: 5px;">
+    <input type="number" id="userphone" placeholder="userphone" style="padding: 5px;">
+    <input type="number" id="grade" placeholder="grade" style="padding: 5px;">
+
+    <button onclick="handleSubmit()">Add</button>
+
+
+    <button id="sortBtn" style="background-color: red; color: white;"><=40</button>
+    <button onclick="second()" style="background-color: red; color: white;">40-50</button>
+    <button onclick="third()" style="background-color: red; color: white;">50-70</button>
+    <button onclick="fourth()" style="background-color: red; color: white;">>=70</button>
+
+  
+    
+
+
+    <!-- <div>
+        <div class="view">
+            <h3>S/N</h3>
+            <h3>Username</h3>
+            <h3>Userphone</h3>
+            <h3>Grade</h3>
+            <h3>Action</h3>
+        </div>
+    </div> -->
+
+      <div class="container-fluid">
+        <div class="row histo bg-black py-3 px-3 p-2">
+          <table class="table table-info table-stripped">
+        
+          
+            <th scope="col">S/N</th>
+            <th scope="col">Username</th>
+            <th scope="col">Userphone</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Action</th>
+          
+
+          <tbody id="display"></tbody>
+
+        </table>  
+        </div>
+    </div>
+   
+
+    
+</body>
+<SCript>
+    let Allusers = [];
+    
+
+    function handleSubmit() {
+        let Name = userName.value;
+        let userphoneVal = userphone.value;
+        let graded = grade.value;
+
+        let theUsers = {
+          userName: Name,
+          userphone: userphoneVal,
+          grade: graded,
+        };
+        Allusers.push(theUsers);
+
+        console.log(Allusers);
+
+        displayAll(Allusers);
+      }
+
+
+      
+      function deleteSore(index) {
+        Allusers.splice(index, 1);
+        displayAll(Allusers);
+      }
+
+
+
+      function displayAll(Allusers){
+
+        display.innerHTML = "";
+        Allusers.forEach((ele, index) => {
+         console.log(ele);
+        //   display.innerHTML += `
+
+        //     <tr id="rowData">
+        //           <td>${index+1}</td>
+        //       <td>${ele.userName}</td>
+        //       <td>${ele.userphone}</td>
+        //       <td>${ele.grade}</td> <div id="action"> 
+        //         <td><button onclick="deleteScore(${index})">Delete</button><td>
+        //     </tr>
+        //  `; 
+
+          const tr = document.createElement('tr')
+          tr.id = 'trID';
+
+        const tdindex = document.createElement('td')
+        tdindex.innerText = `${index+1}`
+        const tdname = document.createElement('td')
+        tdname.innerText = `${ele.userName}`
+        const tdphone = document.createElement('td')
+        tdphone.innerText = `${ele.userphone}`
+        const tdgrade = document.createElement('td')
+        tdgrade.innerText = `${ele.grade}`
+        tdgrade.id = 'tdgradeID';
+
+        // tdgrade.style.backgroundColor = 'red'
+        const tdbutton = document.createElement('td')
+        
+
+        const btn = document.createElement('button')
+        btn.innerText = 'Delete'
+        btn.id = 'btn'
+        btn.addEventListener('click',()=>{
+          deleteSore(index)
+        })
+
+        tdbutton.appendChild(btn)
+   
+
+        tr.appendChild(tdindex)
+        tr.appendChild(tdname)
+        tr.appendChild(tdphone)
+        tr.appendChild(tdgrade)
+        tr.appendChild(tdbutton)
+
+        display.appendChild(tr)
+
+        });
+        
+
+
+
+      }
+      
+
+      function sortGrade(){
+        // let sorted = Allusers.filter((elem)=>{
+        //    return elem.grade <= 40
+        // })
+
+        // console.log(sorted);
+
+        console.log(Allusers);
+       
+
+        // displayAll(sorted)
+
+          Allusers.forEach((ele,index)=>{
+            if(ele.grade <= 40){
+
+              console.log(ele.grade);
+            
+              tdgrade = document.getElementById('tdgradeID')
+
+              tdgrade.classList.add('highlight');
+              console.log(tdgrade);
+
+            }
+         
+          })
+
+
+
+      }
+
+      sortBtn.addEventListener('click',()=>{
+          sortGrade()
+      })
+
+</SCript>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>

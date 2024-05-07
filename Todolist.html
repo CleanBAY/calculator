@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inpVal">
+    <button onclick="AddTodo()">Add</button>
+
+    <div id="display"></div>
+    <script>
+        let input = document.querySelector('#inpVal')
+        let display = document.querySelector('#display')
+
+        let todolist = ['new todo', 'second todo']
+
+        //add todo
+        function AddTodo(){
+            todolist.push(input.value)
+            //  call display todo function to re loop all the array every time there is a new change
+            displayTodo()
+        }
+
+
+        function displayTodo(){
+            //clear all the display innerHTML
+
+            display.innerHTML = ''
+            //show all the content from the array inside the display
+
+            todolist.forEach((elem, i) =>{
+                display.innerHTML += `<div>
+                    <h1 onclick="deleteTodo(${i})">${elem}</h1>
+                    <button onclick="editTodo(${i})">Edit</button>
+                    </div`
+    
+            })
+        }
+
+        displayTodo()
+
+
+        function deleteTodo(index){
+            // todolist.splice(index, 1)
+            // displayTodo()
+
+            const newTodolist = todolist.filter(function(elem, i){
+                return i !=index
+            })
+            todolist = newTodolist
+            displayTodo()
+
+        }
+
+        function editTodo(index){
+            // console.log(index);
+            const res = todolist.find(function(elem, i){
+                return i === index
+            })
+
+            //console.log(res);
+            let newVal = prompt(res, '')
+            //console.log(newVal);
+            if (newVal) {
+                todolist.splice(index, 1, newVal)
+            }
+
+            displayTodo()
+        }
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
